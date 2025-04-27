@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selamat Ulang Tahun!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #333;
+      position: relative;
+    }
+    .card {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+      animation: fadeIn 2s ease;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #ff6f61;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      background: #ff6f61;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #ff3b2e;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
+    /* Balon */
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 70px;
+      background: radial-gradient(circle at 30% 30%, #ff6f61, #d63b2e);
+      border-radius: 50% 50% 50% 50%;
+      animation: float 10s infinite linear;
+      opacity: 0.8;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) translateX(30px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Selamat Ulang Tahun!</h1>
+  <p>Semoga semua impianmu menjadi kenyataan, dan harimu penuh kebahagiaan!</p>
+  <a href="#" class="btn">Terima Kasih</a>
+</div>
+
+<!-- Balon -->
+<div id="balloons"></div>
+
+<!-- Musik -->
+<audio id="birthdayMusic" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-buddy.mp3" type="audio/mp3">
+  Browser Anda tidak mendukung audio tag.
+</audio>
+
+<script>
+  // Membuat balon-balon
+  const balloonContainer = document.getElementById('balloons');
+
+  function createBalloon() {
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    balloon.style.left = Math.random() * 100 + 'vw';
+    balloon.style.animationDuration = (5 + Math.random() * 5) + 's';
+    balloonContainer.appendChild(balloon);
+
+    // Hapus balon setelah selesai animasi
+    setTimeout(() => {
+      balloon.remove();
+    }, 10000);
+  }
+
+  setInterval(createBalloon, 500);
+</script>
+
+</body>
+</html>
